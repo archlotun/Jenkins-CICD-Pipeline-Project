@@ -47,8 +47,8 @@ pipeline {
       steps {
         sh """mvn sonar:sonar \
               -Dsonar.projectKey=JavaWebApp \
-              -Dsonar.host.url=http://172.31.4.143:9000 \
-              -Dsonar.login=e9733df3fcd6ed54cef307d8ac4cc00eeb2d3611"""
+              -Dsonar.host.url=http://172.31.94.171:9000 \
+              -Dsonar.login=4c43bf7e0aadf34e0608c4adb901c6ecc4e9fe29"""
       }
     }
     stage('Upload to Artifactory') {
@@ -94,7 +94,7 @@ pipeline {
   post {
     always {
         echo 'Slack Notifications.'
-        slackSend channel: '#mbandi-jenkins-cicd-pipeline-alerts', //update and provide your channel name
+        slackSend channel: '#milotun-jenkins-pipeline-alert', //update and provide your channel name
         color: COLOR_MAP[currentBuild.currentResult],
         message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
     }
